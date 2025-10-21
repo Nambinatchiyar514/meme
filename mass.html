@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mass Meme Generator</title>
+    <link rel="stylesheet" href="mass.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Mass Meme Generator</h1>
+
+        <div class="controls">
+            <label for="imageUpload">Upload Image:</label>
+            <input type="file" id="imageUpload" accept="image/*" class="input-file">
+
+            <label for="topText">Top Caption:</label>
+            <input type="text" id="topText" placeholder="TOP TEXT" maxlength="50">
+            
+            <label for="bottomText">Bottom Caption:</label>
+            <input type="text" id="bottomText" placeholder="BOTTOM TEXT" maxlength="50">
+            
+            <button id="generateBtn" class="btn primary">Generate/Update Meme</button>
+            <button id="downloadBtn" class="btn secondary" disabled>Download Meme</button>
+        </div>
+
+        <div class="meme-area">
+            <canvas id="memeCanvas"></canvas>
+            <p id="placeholderText">Upload an image to start creating!</p>
+        </div>
+    </div>
+
+    <script src="mass.js"></script>
+</body>
+</html>
