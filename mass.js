@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- TEMPLATE DATA (The "Meme Templates" Library) ---
-    // NOTE: Replace the placeholder URLs with actual local or web image URLs.
+  
     const MEME_TEMPLATES = [
-        // Using placeholder URLs for demonstration. Replace these!
+        
         { id: 't1', name: 'Template 1', src: 'https://via.placeholder.com/600x400?text=Template+1', top: 'TEMPLATE', bottom: 'CAPTION' },
         { id: 't2', name: 'Template 2', src: 'https://via.placeholder.com/600x400?text=Template+2', top: 'TOP IDEA', bottom: 'BOTTOM IDEA' },
         { id: 't3', name: 'Template 3', src: 'https://via.placeholder.com/600x400?text=Template+3', top: 'ONE DOES NOT', bottom: 'SIMPLY FORGET JS' }
@@ -30,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     downloadBtn.disabled = true;
     saveMemeBtn.disabled = true;
 
-    // --- Helper Function to Draw Text on Canvas ---
+   
     function drawText(text, y, alignment) {
         ctx.fillStyle = 'white';
         ctx.strokeStyle = 'black';
@@ -65,27 +64,27 @@ document.addEventListener('DOMContentLoaded', () => {
         saveMemeBtn.disabled = false;
     }
 
-    // --- TEMPLATE LOGIC (READ) ---
+   
     function loadTemplate(template) {
-        // Clear custom upload if a template is selected
+       
         imageUpload.value = ''; 
         
-        // Highlight the selected template item
+       
         document.querySelectorAll('.template-item').forEach(item => {
             item.classList.remove('selected');
         });
         document.getElementById(`template-${template.id}`).classList.add('selected');
 
-        // Set the text fields
+       
         topTextInput.value = template.top;
         bottomTextInput.value = template.bottom;
 
-        // Load the image
+       
         const img = new Image();
-        img.crossOrigin = 'Anonymous'; // Required for images from external URLs to be drawn to canvas
+        img.crossOrigin = 'Anonymous'; 
         img.onload = () => {
             uploadedImage = img;
-            currentTemplateId = template.id; // Track the current template
+            currentTemplateId = template.id; 
             placeholderText.style.display = 'none';
             canvas.style.display = 'block';
             generateMeme();
@@ -121,20 +120,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // CREATE: Save new meme to local storage
+    
     function saveMeme() {
         if (!uploadedImage) return;
 
         const memes = getSavedMemes();
         
-        // Use the Data URL of the generated meme as the thumbnail/source
+        
         const memeUrl = canvas.toDataURL();
         
         const newMeme = {
             id: Date.now(), // Unique ID
             topText: topTextInput.value,
             bottomText: bottomTextInput.value,
-            imageUrl: memeUrl, // The final generated meme image (Data URL)
+            imageUrl: memeUrl,
             templateId: currentTemplateId
         };
 
@@ -196,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Click listener to delete meme (DELETE)
             item.querySelector('.delete-btn').addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevents the parent click event (which would load the meme)
+                e.stopPropagation(); 
                 if (confirm('Are you sure you want to delete this meme?')) {
                     deleteMeme(meme.id);
                 }
@@ -208,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- EVENT LISTENERS ---
     
-    // Custom Image Upload Logic
+   \
     imageUpload.addEventListener('change', (event) => {
         const file = event.target.files[0];
         if (!file) return;
